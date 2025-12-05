@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Futures Asset Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="mobile-container">
+        <div class="header-tabs">
+            <span>Ringkasan</span>
+            <span class="active">Futures</span>
+            <span>Earn</span>
+            <span>Spot</span>
+            <span>Pendanaan</span>
+        </div>
+
+        <div class="sub-header">
+            <span class="sub-tab active">USDⓈ-M</span>
+            <span class="sub-tab">COIN-M</span>
+            <span class="sub-tab">Option</span>
+        </div>
+
+        <div class="balance-section">
+            <div class="balance-header">
+                <span>Saldo Margin <i class="far fa-eye"></i></span>
+                <div>
+                    <i class="fas fa-exchange-alt" style="transform: rotate(90deg); margin-right: 10px;"></i>
+                    <i class="far fa-file-alt"></i>
+                </div>
+            </div>
+            <div class="main-balance">
+                <span id="disp-wallet-total">0.00</span> <small>USDT</small>
+                <i class="fas fa-caret-down" style="font-size: 14px; color: #fff;"></i>
+            </div>
+            <div class="sub-balance">
+                ≈ Rp<span id="disp-wallet-idr">0</span>
+            </div>
+            <div class="pnl-day">
+                PnL Terealisasi Hari Ini <span class="text-red" id="disp-daily-pnl">-0.00(-0.00%)</span> <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+            </div>
+        </div>
+
+        <div class="wallet-grid">
+            <div class="grid-item">
+                <label>Saldo Dompet (USDT)</label>
+                <span id="disp-wallet-balance">0.00</span>
+                <span class="sub-val">≈ Rp<span id="disp-wallet-balance-idr">0</span></span>
+            </div>
+            <div class="grid-item">
+                <label>PNL Belum Terealisasi (USDT)</label>
+                <span id="disp-unrealized-total">0.00</span>
+                <span class="sub-val">≈ Rp<span id="disp-unrealized-idr">0</span></span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-yellow">Dagang</button>
+            <button class="btn btn-gray">Swap</button>
+            <button class="btn btn-gray">Transfer</button>
+        </div>
+
+        <div class="promo-list">
+            <div class="promo-item">
+                <div class="promo-left">
+                    <img id="icon-bnb" src="" class="custom-icon">
+                    <span>Diskon BNB 10%</span>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+            <div class="promo-item">
+                <div class="promo-left">
+                    <img id="icon-bfusd" src="" class="custom-icon">
+                    <span>Penghasilan BFUSD</span>
+                </div>
+                <div class="promo-right" style="color: var(--text-gray);">
+                    APY --% <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                </div>
+            </div>
+            <div class="promo-item">
+                <div class="promo-left">
+                    <img id="icon-ldusdt" src="" class="custom-icon">
+                    <span>Penghasilan LDUSDT</span>
+                </div>
+                <div class="promo-right" style="color: var(--text-gray);">
+                    APY 1.88% <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-tabs">
+            <span class="p-tab active">Posisi</span>
+            <span class="p-tab">Aset</span>
+        </div>
+
+        <div id="positions-container"></div>
+
+        <div class="footer">
+            <div class="nav-item" onclick="toggleDashboard()">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 10L12 18L20 10L12 2Z" fill="currentColor" fill-opacity="0.3"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L15.5 9L12 12.5L8.5 9L12 5.5ZM12 2L4 10L12 18L20 10L12 2Z" fill="currentColor"/>
+                    <path d="M8.5 15L12 18.5L15.5 15" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span>Beranda</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 7L13 15L9 11L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17 7H21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="4" y="19" width="4" height="2" rx="1" fill="currentColor"/>
+                    <rect x="17" y="19" width="4" height="2" rx="1" fill="currentColor"/>
+                </svg>
+                <span>Pasar</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 10L19 6L15 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 6H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 14L5 18L9 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19 18H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="10.5" y="10.5" width="3" height="3" transform="rotate(45 10.5 10.5)" fill="currentColor"/>
+                </svg>
+                <span>Perdagangan</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2H8C6.89543 2 6 2.89543 6 4V20C6 21.1046 6.89543 22 8 22H16C17.1046 22 18 21.1046 18 20V4C18 2.89543 17.1046 2 16 2Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M9 7H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M9 11H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <rect x="13.5" y="15.5" width="3" height="3" transform="rotate(45 13.5 15.5)" fill="currentColor"/>
+                </svg>
+                <span>Futures</span>
+            </div>
+            <div class="nav-item active">
+                <svg class="nav-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 7H5C3.89543 7 3 7.89543 3 9V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V9C21 7.89543 20.1046 7 19 7Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M5 7V5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V7" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="14.5" y="12.5" width="4" height="4" transform="rotate(45 14.5 12.5)" fill="#FCD535"/>
+                </svg>
+                <span>Aset</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="editor-dashboard">
+        <h2>Edit Dashboard</h2>
+        
+        <div class="edit-group">
+            <label>Kurs 1 USDT (IDR)</label>
+            <input type="number" id="in-rate" class="global-input">
+        </div>
+        <hr style="border-color: #444; margin: 10px 0;">
+        <div class="edit-group">
+            <label>Saldo Awal (Sebelum PnL)</label>
+            <small style="color: #888;">Input modal awal Anda disini</small>
+            <input type="number" id="in-wallet" class="global-input">
+        </div>
+        
+        <div class="edit-group">
+            <label>Persentase PnL Hari Ini (%)</label>
+            <small style="color: #888;">Contoh: 100 (akan menambah saldo 100%)</small>
+            <input type="number" id="in-daily-percent" class="global-input" step="0.01">
+        </div>
+
+        <hr style="border-color: #444; margin: 10px 0;">
+        
+        <h3>URL Ikon Bawah (Promo)</h3>
+        <div class="edit-group">
+            <label>Icon Diskon BNB (URL)</label>
+            <input type="text" id="in-url-bnb" class="global-input">
+        </div>
+        <div class="edit-group">
+            <label>Icon BFUSD (URL)</label>
+            <input type="text" id="in-url-bfusd" class="global-input">
+        </div>
+        <div class="edit-group">
+            <label>Icon LDUSDT (URL)</label>
+            <input type="text" id="in-url-ldusdt" class="global-input">
+        </div>
+
+        <hr style="border-color: #444; margin: 20px 0;">
+        <h3>Daftar Posisi</h3>
+        <div id="editor-positions-list"></div>
+
+        <button class="btn-add" onclick="addNewPosition()">+ Tambah Posisi</button>
+        <button class="close-btn" onclick="toggleDashboard()">Tutup & Simpan</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
